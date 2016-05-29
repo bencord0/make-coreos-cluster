@@ -1,0 +1,4 @@
+ansible_ssh_user: core
+ansible_python_interpreter: "PATH=/home/core/bin:$PAH python"
+
+instance_names: core-1,core-2,core-3

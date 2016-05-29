@@ -1,0 +1,11 @@
+- name: Destroy Cluster Instances
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: Destroy instances
+      gce:
+        instance_names: "{{ instance_names }}"
+        state: absent
+

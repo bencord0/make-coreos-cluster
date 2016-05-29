@@ -1,0 +1,32 @@
+- name: Create Cluster Instances
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  vars:
+    machine_type: f1-micro
+    image: coreos-stable
+
+  tasks:
+    - name: Launch instances
+      gce:
+        instance_names: "{{ instance_names }}"
+        machine_type: "{{ machine_type }}"
+        image: "{{ image }}"
+        state: present
+      register: gce
+
+    - name: Wait for SSH
+      wait_for: host={{ item.public_ip }} port=22 delay=10 timeout=300
+      with_items: gce.instance_data
+
+    - name: Add host to groupname
+      add_host: hostname={{ item.public_ip }} groupname=new_instances
+      with_items: gce.instance_data
+
+- name: Bootstrap new instances
+  hosts: new_instances
+  gather_facts: False
+
+  roles:
+    - defunctzombie.coreos-bootstrap

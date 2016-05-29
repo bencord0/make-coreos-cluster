@@ -1,0 +1,31 @@
+
+
+
+Step 0: Get a GCE account
+-------------------------
+
+Create a Google Compute Engine project
+https://console.cloud.google.com/iam-admin/projects
+
+Create a service account for ansible
+https://console.developers.google.com/projectselector/permissions/serviceaccounts
+
+Download and save the credentials json file to .gce.json in this folder.
+
+Set a ssh key for the 'core' user in GCE dashboard
+https://console.cloud.google.com/compute/metadata/sshKeys
+
+Step 1: Setup your environment
+------------------------------
+  $ cp env.gce.example .env
+  $ $editor .env
+
+Then
+
+  $ source .env
+
+
+Step 2: Launch the cluster
+--------------------------
+
+  $ make cluster ping
