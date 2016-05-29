@@ -37,3 +37,4 @@
 
   roles:
     - etcd
+    - fleet

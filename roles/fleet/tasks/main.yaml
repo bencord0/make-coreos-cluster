@@ -1,0 +1,2 @@
+---
+- service: name=fleet.service state=started enabled=yes
