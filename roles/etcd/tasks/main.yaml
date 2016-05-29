@@ -1,0 +1,11 @@
+---
+- file: state=directory path=/etc/systemd/system/etcd2.service.d
+
+- name: etcd2.service.d/override.conf
+  template: src=etcd2-override.conf dest=/etc/systemd/system/etcd2.service.d/override.conf
+  notify:
+    - daemon-reload
+    - restart etcd2
+
+- name: etcd2.service
+  service: name=etcd2.service state=started enabled=yes
