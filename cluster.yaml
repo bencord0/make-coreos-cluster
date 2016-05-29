@@ -21,7 +21,7 @@
       with_items: gce.instance_data
 
     - name: Add host to groupname
-      add_host: hostname={{ item.public_ip }} groupname=new_instances
+      add_host: hostname={{ item.name }} groupname=new_instances
       with_items: gce.instance_data
 
 - name: Bootstrap new instances
