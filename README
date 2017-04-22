@@ -29,3 +29,9 @@ Step 2: Launch the cluster
 --------------------------
 
   $ make cluster ping
+
+Step 3: Connect to the cluster
+------------------------------
+
+  $ eval $(make fleetctl-env)
+  $ fleetctl list-machines

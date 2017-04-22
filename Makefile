@@ -12,4 +12,8 @@ cluster:
 destroy:
 	ansible-playbook -v -i gce.py destroy.yaml
 
-.PHONY: help ping cluster destroy
+fleetctl-env:
+	@echo export FLEETCTL_TUNNEL=$(shell ./gce.py --list | jq '._meta.hostvars."core-1".ansible_ssh_host'|xargs echo)
+	@echo export FLEETCTL_SSH_USERNAME=core
+
+.PHONY: help ping cluster destroy fleetctl-env
